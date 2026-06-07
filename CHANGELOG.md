@@ -8,5 +8,5 @@ Alle wichtigen Änderungen, neue Versionen und Release-Notes halten wir hier fes
 - Vier Spielmodi: Zahlenraten, Quiz, Memory, Reaktion
 - Schwierigkeitsebenen, Level, Punkte und Belohnungen
 
-## [n.n.n] - Nächste Version
-- Beschreibe hier neue Features, Bugfixes und Verbesserungen.
+## [0.1.2] - Content Update
+- Neue Schwierigkeitsstufe (Extrem) für alle Spiele.

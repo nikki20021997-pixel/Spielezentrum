@@ -1,0 +1,126 @@
+name: Build and Release
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+
+jobs:
+  build-release:
+    runs-on: windows-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements.txt
+
+      - name: Set version.txt from tag
+        shell: pwsh
+        run: |
+          $tag = '${{ github.ref_name }}'
+          if ($tag.StartsWith('v')) { $tag = $tag.Substring(1) }
+          Write-Host "Using version: $tag"
+          Set-Content -Path version.txt -Value $tag -Encoding UTF8
+          # export VERSION for later steps
+          Add-Content -Path $env:GITHUB_ENV -Value "VERSION=$tag"
+
+      - name: Build executable
+        run: |
+          .\build.bat
+
+      - name: Build launcher executable
+        shell: pwsh
+        run: |
+          Write-Host "Building launcher.exe"
+          python -m PyInstaller --noconfirm --clean --onefile --windowed --name launcher launcher.py
+          if (!(Test-Path -Path 'release')) { New-Item -Path release -ItemType Directory | Out-Null }
+          $launcherDist = Join-Path $PWD 'dist\launcher.exe'
+          $launcherDest = Join-Path $PWD "release\launcher_v${{ env.VERSION }}.exe"
+          if (Test-Path -Path $launcherDist) { Copy-Item -Path $launcherDist -Destination $launcherDest -Force }
+
+      - name: Prepare release notes from CHANGELOG.md
+        shell: pwsh
+        run: |
+          Write-Host "Preparing release notes for version $env:VERSION"
+          $version = $env:VERSION
+          if (Test-Path -Path 'CHANGELOG.md') {
+            $changelog = Get-Content CHANGELOG.md -Raw
+            $pattern = "(?m)^##\s*\[?\s*" + [regex]::Escape($version) + "\s*\]?"
+            $match = [regex]::Match($changelog, $pattern)
+            if ($match.Success) {
+              $start = $match.Index
+              $remaining = $changelog.Substring($start)
+              $next = [regex]::Match($remaining, "(?m)^##\s")
+              if ($next.Success) { $section = $remaining.Substring(0, $next.Index) } else { $section = $remaining }
+              $body = $section
+            } else {
+              $body = $changelog
+            }
+          } else {
+            $body = "No CHANGELOG.md found in repository."
+          }
+          Add-Content -Path $env:GITHUB_ENV -Value "RELEASE_BODY<<EOF"
+          Add-Content -Path $env:GITHUB_ENV -Value $body
+          Add-Content -Path $env:GITHUB_ENV -Value "EOF"
+
+      - name: Optional: Code sign release artifacts
+        if: ${{ secrets.CODE_SIGN_PFX != '' }}
+        shell: pwsh
+        run: |
+          Write-Host "Code signing enabled — decoding PFX and signing artifacts"
+          [System.IO.File]::WriteAllBytes('cert.pfx',[System.Convert]::FromBase64String('${{ secrets.CODE_SIGN_PFX }}'))
+          $pwd = '${{ secrets.CODE_SIGN_PASSWORD }}'
+          $mainExe = Join-Path $PWD "release\spielezentrum_${{ env.VERSION }}.exe"
+          $launcherExe = Join-Path $PWD "release\launcher_v${{ env.VERSION }}.exe"
+          if (Test-Path $mainExe) {
+            Write-Host "Signing $mainExe"
+            & signtool.exe sign /f cert.pfx /p $pwd /tr http://timestamp.digicert.com /td sha256 /fd sha256 $mainExe
+            Write-Host "Recreating ZIP with signed exe"
+            powershell -Command "Compress-Archive -Path '$mainExe' -DestinationPath 'release\spielezentrum_v${{ env.VERSION }}.zip' -Force"
+          } else { Write-Host "Main exe not found: $mainExe" }
+          if (Test-Path $launcherExe) {
+            Write-Host "Signing $launcherExe"
+            & signtool.exe sign /f cert.pfx /p $pwd /tr http://timestamp.digicert.com /td sha256 /fd sha256 $launcherExe
+          } else { Write-Host "Launcher exe not found: $launcherExe" }
+
+      - name: Create GitHub Release
+        id: create_release
+        uses: actions/create-release@v1
+        with:
+          tag_name: ${{ github.ref_name }}
+          release_name: Release ${{ github.ref_name }}
+          body: ${{ env.RELEASE_BODY }}
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Upload release asset
+        uses: actions/upload-release-asset@v1
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: release/spielezentrum_v${{ env.VERSION }}.zip
+          asset_name: spielezentrum_v${{ env.VERSION }}.zip
+          asset_content_type: application/zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Upload launcher asset
+        uses: actions/upload-release-asset@v1
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: release/launcher_v${{ env.VERSION }}.exe
+          asset_name: launcher_v${{ env.VERSION }}.exe
+          asset_content_type: application/octet-stream
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

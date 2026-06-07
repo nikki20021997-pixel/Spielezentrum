@@ -1,0 +1,5 @@
+{
+  "version_url": "https://raw.githubusercontent.com/nikki20021997-pixel/Spielezentrum/main/version.txt",
+  "download_url_template": "https://github.com/nikki20021997-pixel/Spielezentrum/releases/download/v{version}/spielezentrum_{version}.exe",
+  "changelog_url": "https://raw.githubusercontent.com/nikki20021997-pixel/Spielezentrum/main/CHANGELOG.md"
+}

@@ -14,7 +14,7 @@ dist/
 *.spec
 
 # Release artifacts
-release/
+# release/
 
 # Editor folders
 .vscode/

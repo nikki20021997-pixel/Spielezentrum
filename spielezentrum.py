@@ -2,13 +2,14 @@
 import time
 import customtkinter as ctk
 
-VALID_USERNAME = 'user'
-VALID_PASSWORD = 'pass123'
+VALID_USERNAME = '123'
+VALID_PASSWORD = '123'
 
 DIFFICULTY_SETTINGS = {
     'leicht': {'label': 'Leicht', 'mult': 1, 'range': 10, 'pairs': 4, 'reaction_target': 1.7},
     'mittel': {'label': 'Mittel', 'mult': 1.5, 'range': 20, 'pairs': 6, 'reaction_target': 1.2},
     'schwer': {'label': 'Schwer', 'mult': 2, 'range': 50, 'pairs': 8, 'reaction_target': 0.9},
+    'extrem': {'label': 'Extrem', 'mult': 2.5, 'range': 100, 'pairs': 10, 'reaction_target': 0.6},
 }
 
 QUIZ_QUESTIONS = {
@@ -16,16 +17,42 @@ QUIZ_QUESTIONS = {
         {'question': 'Welches Tier bellt?', 'options': ['Katze', 'Hund', 'Vogel', 'Pferd'], 'answer': 'Hund'},
         {'question': 'Wie viele Tage hat eine Woche?', 'options': ['5', '6', '7', '8'], 'answer': '7'},
         {'question': 'Welche Farbe entsteht aus Blau und Gelb?', 'options': ['Grün', 'Rot', 'Lila', 'Orange'], 'answer': 'Grün'},
+        {'question': 'Wie heist die Hauptstadt von Deutschland?', 'options': ['Berlin', 'Hamburg', 'München', 'Köln'], 'answer': 'Berlin'},
+        {'question': 'Von welchem Spielestudio stammt die „Red Dead Redemption“-Reihe?', 'options': ['Rockstar Games', 'Ubisoft', 'Electronic Arts', 'Bethesda'], 'answer': 'Rockstar Games'},
+        {'question': 'Welcher Sportwagenhersteller stellt den 911 her?', 'options': ['Ferrari', 'Lamborghini', 'Porsche', 'Aston Martin'], 'answer': 'Porsche'},
+        {'question': 'In welchem Land liegt das Kernkraftwerk Tschernobyl?', 'options': ['Russland', 'Ukraine', 'Weißrussland', 'Polen'], 'answer': 'Ukraine'},
+        {'question': 'Wie viele Punkte hat ein Würfel insgesamt?', 'options': ['18', '20', '21', '24'], 'answer': '21'},
     ],
     'mittel': [
         {'question': 'Welcher Planet ist der dritte von der Sonne?', 'options': ['Mars', 'Erde', 'Venus', 'Jupiter'], 'answer': 'Erde'},
         {'question': 'Was ist 7 x 6?', 'options': ['42', '36', '48', '40'], 'answer': '42'},
         {'question': 'Welches Element hat das Symbol O?', 'options': ['Gold', 'Silber', 'Sauerstoff', 'Wasserstoff'], 'answer': 'Sauerstoff'},
+        {'question': 'Wie heißt die Hauptstadt von Frankreich?', 'options': ['Lyon', 'Marseille', 'Paris', 'Nizza'], 'answer': 'Paris'},
+        {'question': 'Was ist der häufigste Familienname in den USA?', 'options': ['Smith', 'Johnson', 'Williams', 'Brown'], 'answer': 'Smith'},
+        {'question': 'In welcher Stadt bist du, wenn du auf der Spanischen Treppe stehst?', 'options': ['Rom', 'Madrid', 'Barcelona', 'Lissabon'], 'answer': 'Rom'},
+        {'question': 'Welches Land hat die meisten Fußballweltmeisterschaften gewonnen?', 'options': ['Brasilien', 'Deutschland', 'Italien', 'Argentinien'], 'answer': 'Brasilien'},
+        {'question': 'Von welcher Telefongesellschaft stammt das Handy 3310?', 'options': ['Nokia', 'Motorola', 'Sony', 'Samsung'], 'answer': 'Nokia'},
     ],
     'schwer': [
         {'question': 'Wie heißt die Hauptstadt von Kanada?', 'options': ['Toronto', 'Vancouver', 'Ottawa', 'Montreal'], 'answer': 'Ottawa'},
         {'question': 'Wer schrieb "Faust"?', 'options': ['Schiller', 'Goethe', 'Kafka', 'Heine'], 'answer': 'Goethe'},
         {'question': 'Welche Zahl ist die Primzahl?', 'options': ['15', '21', '29', '33'], 'answer': '29'},
+        {'question': 'Was ist die Wurzel aus 144?', 'options': ['10', '11', '12', '13'], 'answer': '12'},  
+        {'question': 'In welcher Stadt steht die Sagrada Familia?', 'options': ['Madrid', 'Barcelona', 'Valencia', 'Sevilla'], 'answer': 'Barcelona'},
+        {'question': 'Welches Land hat die meisten Vulkane?', 'options': ['Indonesien', 'Japan', 'USA', 'Italien'], 'answer': 'USA'},
+        {'question': 'Welcher Autohersteller hat 2020 den höchsten Umsatz erzielt?', 'options': ['Toyota', 'Volkswagen', 'Ford', 'Honda'], 'answer': 'Volkswagen'},
+        {'question': 'Wer ist die deutsche Stimme von Homer Simpson?', 'options': ['Christoph Jablonka', 'Oliver Kalkofe', 'Dieter Hallervorden', 'Hape Kerkeling'], 'answer': 'Christoph Jablonka'},
+        
+    ],
+    'extrem': [
+        {'question': 'Wie heißt die Hauptstadt von Kasachstan?', 'options': ['Almaty', 'Astana', 'Shymkent', 'Karaganda'], 'answer': 'Astana'},
+        {'question': 'Wer schrieb "Der Steppenwolf"?', 'options': ['Hermann Hesse', 'Franz Kafka', 'Thomas Mann', 'Friedrich Dürrenmatt'], 'answer': 'Hermann Hesse'},
+        {'question': 'Welche Zahl ist die Primzahl?', 'options': ['51', '57', '61', '63'], 'answer': '61'},
+        {'question': 'Was ist die Wurzel aus 169?', 'options': ['12', '13', '14', '15'], 'answer': '13'},  
+        {'question': 'In welcher Stadt steht die Hagia Sophia?', 'options': ['Istanbul', 'Ankara', 'Izmir', 'Bursa'], 'answer': 'Istanbul'},
+        {'question': 'Wer ist die deutsche Stimme von Bart Simpson?', 'options': ['Christoph Jablonka', 'Sandra Schwittau', 'Dieter Hallervorden', 'Hape Kerkeling'], 'answer': 'Sandra Schwittau'},
+        {'question': 'Welcher Kontinent liegt als einziger auf allen vier Erdhalbkugeln?', 'options': ['Afrika', 'Antarktis', 'Asien', 'Amerika'], 'answer': 'Afrika'},
+        {'question': 'Wie viele Oscars für den besten Originalsong hat Disney gewonnen?', 'options': ['10', '12', '14', '16'], 'answer': '14'},
     ],
 }
 
@@ -219,7 +246,7 @@ class GameApp(ctk.CTk):
         difficulty_frame.grid_columnconfigure((0, 1, 2), weight=1)
 
         self.difficulty_var = ctk.StringVar(value=self.difficulty)
-        for index, key in enumerate(['leicht', 'mittel', 'schwer']):
+        for index, key in enumerate(['leicht', 'mittel', 'schwer', 'extrem']):
             ctk.CTkRadioButton(
                 difficulty_frame,
                 text=DIFFICULTY_SETTINGS[key]['label'],

@@ -148,12 +148,6 @@ class GameApp(ctk.CTk):
             corner_radius=14,
         ).grid(row=4, column=0, padx=24, pady=(0, 24), sticky='ew')
 
-        ctk.CTkLabel(
-            form_frame,
-            text='Demo: user / pass123',
-            text_color='#94a3b8',
-            font=ctk.CTkFont(size=11),
-        ).grid(row=5, column=0, padx=24, pady=(0, 24), sticky='w')
 
     def _handle_login(self):
         username = self.username_entry.get().strip()

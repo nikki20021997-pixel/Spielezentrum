@@ -74,7 +74,7 @@ jobs:
           Add-Content -Path $env:GITHUB_ENV -Value "EOF"
 
       - name: Optional: Code sign release artifacts
-        if: ${{ secrets.CODE_SIGN_PFX != '' }}
+        if: ${{ secrets.CODE_SIGN_PFX }}
         shell: pwsh
         run: |
           Write-Host "Code signing enabled — decoding PFX and signing artifacts"

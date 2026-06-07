@@ -31,3 +31,10 @@ desktop.ini
 # Temporary files
 *.tmp
 *~
+
+# Ignore launcher build artifacts (temporary)
+launcher.exe
+launcher_*.exe
+launcher.spec
+launcher/
+release/launcher*

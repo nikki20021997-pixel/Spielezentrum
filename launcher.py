@@ -256,24 +256,41 @@ class LauncherApp(ctk.CTk):
             self.update_btn.configure(state='normal')
 
     def run_app(self):
-        # Try release exe for current version, then dist, then fall back to running the script
+        # Preferred candidates: exact-version exe, dist exe, script
         candidates = []
         candidates.append(os.path.join(RELEASE_DIR, f'spielezentrum_{self.local_version}.exe'))
+        candidates.append(os.path.join(RELEASE_DIR, 'spielezentrum.exe'))
         candidates.append(os.path.join(BASE_DIR, 'dist', f'spielezentrum_{self.local_version}.exe'))
         candidates.append(os.path.join(BASE_DIR, 'spielezentrum.py'))
 
+        # Try explicit candidates first
         for path in candidates:
             if os.path.exists(path):
                 self._log(f'Starte: {path}')
                 try:
-                    if path.endswith('.exe'):
+                    if path.lower().endswith('.exe'):
                         subprocess.Popen([path], cwd=os.path.dirname(path))
                     else:
-                        # launch python script
                         subprocess.Popen([sys.executable, path], cwd=BASE_DIR)
                     return
                 except Exception as e:
                     self._log(f'Fehler beim Starten: {e}')
+
+        # Fallback: look for any spielezentrum*.exe in the release folder
+        try:
+            if os.path.isdir(RELEASE_DIR):
+                for name in os.listdir(RELEASE_DIR):
+                    if name.lower().startswith('spielezentrum') and name.lower().endswith('.exe'):
+                        path = os.path.join(RELEASE_DIR, name)
+                        self._log(f'Starte (Fallback): {path}')
+                        try:
+                            subprocess.Popen([path], cwd=os.path.dirname(path))
+                            return
+                        except Exception as e:
+                            self._log(f'Fehler beim Starten (Fallback): {e}')
+        except Exception:
+            pass
+
         self._log('Keine ausführbare Datei gefunden. Baue das Projekt oder platziere die exe in release/.')
 
 

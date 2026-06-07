@@ -11,13 +11,12 @@ if "%VERSION%"=="" (
   exit /b 1
 )
 set APP_EXE=spielezentrum_%VERSION%.exe
-set LAUNCHER_EXE=launcher_%VERSION%.exe
 set RELEASE_DIR=release
 
 rem Entferne alte lokale Release-Artefakte außer der aktuellen Version
 if exist %RELEASE_DIR% (
   echo Loesche alte lokale Artefakte aus %RELEASE_DIR%...
-  powershell -Command "Get-ChildItem -Path '%RELEASE_DIR%\*' -Include 'spielezentrum_*.exe','launcher_*.exe','spielezentrum_v*.zip','launcher_v*.zip' -File | Where-Object { $_.Name -notlike '*%VERSION%*' } | Remove-Item -Force"
+  powershell -Command "Get-ChildItem -Path '%RELEASE_DIR%\*' -Include 'spielezentrum_*.exe','spielezentrum_v*.zip' -File | Where-Object { $_.Name -notlike '*%VERSION%*' } | Remove-Item -Force"
 )
 
 echo Baue Version %VERSION%...
@@ -33,21 +32,11 @@ if errorlevel 1 (
   exit /b 1
 )
 
-rem Build launcher
-set LAUNCHER_CONFIG=%CD%\update_config.json
-python -m PyInstaller --noconfirm --clean --onefile --windowed --name launcher_%VERSION% --add-data "%LAUNCHER_CONFIG%;." --distpath dist\launcher --workpath build\launcher --specpath build\launcher launcher.py
-if errorlevel 1 (
-  echo Build des Launchers fehlgeschlagen.
-  exit /b 1
-)
-
 if not exist %RELEASE_DIR% mkdir %RELEASE_DIR%
 copy /y dist\app\%APP_EXE% %RELEASE_DIR%\%APP_EXE%
-copy /y dist\launcher\%LAUNCHER_EXE% %RELEASE_DIR%\%LAUNCHER_EXE%
 copy /y update_config.json %RELEASE_DIR%\update_config.json
 
 powershell -Command "Compress-Archive -Path '%RELEASE_DIR%\%APP_EXE%' -DestinationPath '%RELEASE_DIR%\spielezentrum_v%VERSION%.zip' -Force"
-powershell -Command "Compress-Archive -Path '%RELEASE_DIR%\%LAUNCHER_EXE%' -DestinationPath '%RELEASE_DIR%\launcher_v%VERSION%.zip' -Force"
 
 rem Entferne alte lokale Git-Tags außer dem aktuellen Release-Tag, falls Git installiert ist
 where git >nul 2>&1
@@ -144,7 +133,7 @@ set "GH_ASSETS_OUTPUT=%TEMP%\gh_assets_%RANDOM%.txt"
 "%GH_PATH%" release view v%VERSION% >"%GH_OUTPUT%" 2>&1
 if errorlevel 1 (
   echo Release v%VERSION% existiert nicht. Erstelle neuen Release...
-  "%GH_PATH%" release create v%VERSION% "%RELEASE_DIR%\%APP_EXE%" "%RELEASE_DIR%\%LAUNCHER_EXE%" "%RELEASE_DIR%\spielezentrum_v%VERSION%.zip" "%RELEASE_DIR%\launcher_v%VERSION%.zip" --title "Release v%VERSION%" --notes "Automatisch erstellt von build.bat" >"%GH_OUTPUT%" 2>&1
+  "%GH_PATH%" release create v%VERSION% "%RELEASE_DIR%\%APP_EXE%" "%RELEASE_DIR%\spielezentrum_v%VERSION%.zip" --title "Release v%VERSION%" --notes "Automatisch erstellt von build.bat" >"%GH_OUTPUT%" 2>&1
   if errorlevel 1 (
     echo Fehler: Release konnte nicht erstellt werden.
     type "%GH_OUTPUT%"
@@ -169,7 +158,7 @@ if errorlevel 1 (
     )
   )
   echo Release v%VERSION% existiert bereits. Aktualisiere Artefakte...
-  "%GH_PATH%" release upload v%VERSION% "%RELEASE_DIR%\%APP_EXE%" "%RELEASE_DIR%\%LAUNCHER_EXE%" "%RELEASE_DIR%\spielezentrum_v%VERSION%.zip" "%RELEASE_DIR%\launcher_v%VERSION%.zip" --clobber >"%GH_OUTPUT%" 2>&1
+  "%GH_PATH%" release upload v%VERSION% "%RELEASE_DIR%\%APP_EXE%" "%RELEASE_DIR%\spielezentrum_v%VERSION%.zip" --clobber >"%GH_OUTPUT%" 2>&1
   if errorlevel 1 (
     echo Fehler: Artefakte konnten nicht hochgeladen werden.
     type "%GH_OUTPUT%"
@@ -209,7 +198,7 @@ if errorlevel 0 (
     )
     popd >nul 2>&1
 
-    git add "%RELEASE_DIR%\%APP_EXE%" "%RELEASE_DIR%\%LAUNCHER_EXE%" "%RELEASE_DIR%\spielezentrum_v%VERSION%.zip" "%RELEASE_DIR%\launcher_v%VERSION%.zip" >"%COMMIT_OUTPUT%" 2>&1
+    git add "%RELEASE_DIR%\%APP_EXE%" "%RELEASE_DIR%\spielezentrum_v%VERSION%.zip" >"%COMMIT_OUTPUT%" 2>&1
     git commit -m "Add release v%VERSION%" >"%COMMIT_OUTPUT%" 2>&1
     if errorlevel 1 (
       echo Keine neuen Änderungen zu committen oder Commit fehlgeschlagen.
@@ -235,7 +224,5 @@ if exist "%COMMIT_OUTPUT%" del /f /q "%COMMIT_OUTPUT%" >nul 2>&1
 
 echo Build abgeschlossen.
 echo App: %RELEASE_DIR%\%APP_EXE%
-echo Launcher: %RELEASE_DIR%\%LAUNCHER_EXE%
 echo App ZIP: %RELEASE_DIR%\spielezentrum_v%VERSION%.zip
-echo Launcher ZIP: %RELEASE_DIR%\launcher_v%VERSION%.zip
 endlocal

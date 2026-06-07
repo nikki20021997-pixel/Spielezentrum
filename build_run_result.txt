@@ -1,0 +1,210 @@
+returncode: 0
+STDOUT:
+Loesche alte lokale Artefakte aus release...
+Baue Version 0.1.1...
+        1 Datei(en) kopiert.
+        1 Datei(en) kopiert.
+        1 Datei(en) kopiert.
+Entferne alte Git-Tags, behalte nur v0.1.1...
+Git gefunden: C:\Program Files\Git\cmd\git.exe, fuege C:\Program Files\Git\cmd\ zum PATH hinzu.
+GitHub CLI gefunden: C:\Program Files\GitHub CLI\gh.exe
+GitHub Release v0.1.1 hochladen...
+Entferne alte GitHub Releases ausser v0.1.1...
+Release v0.1.1 existiert bereits. Aktualisiere Artefakte...
+Artefakte aktualisiert.
+VerfÃ¼gbare Release-Artefakte:
+launcher_0.1.1.exe
+launcher_v0.1.1.zip
+spielezentrum_0.1.1.exe
+spielezentrum_v0.1.1.zip
+Commit release-Artefakte in das Git-Repository unter release/...
+Pushe Release-Dateien in Branch 'main'...
+Release-Dateien erfolgreich in 'release/' auf Branch 'main' gepusht.
+Build abgeschlossen.
+App: release\spielezentrum_0.1.1.exe
+Launcher: release\launcher_0.1.1.exe
+App ZIP: release\spielezentrum_v0.1.1.zip
+Launcher ZIP: release\launcher_v0.1.1.zip
+
+STDERR:
+128 INFO: PyInstaller: 6.20.0, contrib hooks: 2026.5
+128 INFO: Python: 3.14.5
+147 INFO: Platform: Windows-11-10.0.26200-SP0
+147 INFO: Python environment: C:\Users\nikki\AppData\Local\Python\pythoncore-3.14-64
+148 INFO: wrote build\app\spielezentrum_0.1.1.spec
+150 INFO: Removing temporary files and cleaning cache in C:\Users\nikki\AppData\Local\pyinstaller
+152 INFO: Module search paths (PYTHONPATH):
+['c:\\Users\\nikki\\Desktop\\Meine Projekte',
+ 'C:\\Users\\nikki\\AppData\\Local\\Python\\pythoncore-3.14-64\\python314.zip',
+ 'C:\\Users\\nikki\\AppData\\Local\\Python\\pythoncore-3.14-64\\DLLs',
+ 'C:\\Users\\nikki\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib',
+ 'C:\\Users\\nikki\\AppData\\Local\\Python\\pythoncore-3.14-64',
+ 'C:\\Users\\nikki\\AppData\\Roaming\\Python\\Python314\\site-packages',
+ 'C:\\Users\\nikki\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages',
+ 'c:\\Users\\nikki\\Desktop\\Meine Projekte']
+387 INFO: checking Analysis
+387 INFO: Building Analysis because Analysis-00.toc is non existent
+387 INFO: Looking for Python shared library...
+387 INFO: Using Python shared library: C:\Users\nikki\AppData\Local\Python\pythoncore-3.14-64\python314.dll
+387 INFO: Running Analysis Analysis-00.toc
+387 INFO: Target bytecode optimization level: 0
+387 INFO: Initializing module dependency graph...
+388 INFO: Initializing module graph hook caches...
+399 INFO: Analyzing modules for base_library.zip ...
+1756 INFO: Processing standard module hook 'hook-encodings.py' from 'C:\\Users\\nikki\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\PyInstaller\\hooks'
+3277 INFO: Processing standard module hook 'hook-difflib.py' from 'C:\\Users\\nikki\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\PyInstaller\\hooks'
+3289 INFO: Processing standard module hook 'hook-heapq.py' from 'C:\\Users\\nikki\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\PyInstaller\\hooks'
+3387 INFO: Processing standard module hook 'hook-pickle.py' from 'C:\\Users\\nikki\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\PyInstaller\\hooks'
+4641 INFO: Caching module dependency graph...
+4665 INFO: Analyzing c:\Users\nikki\Desktop\Meine Projekte\spielezentrum.py
+4688 INFO: Processing standard module hook 'hook-customtkinter.py' from 'C:\\Users\\nikki\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\_pyinstaller_hooks_contrib\\stdhooks'
+4744 INFO: Processing pre-find-module-path hook 'hook-tkinter.py' from 'C:\\Users\\nikki\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\PyInstaller\\hooks\\pre_find_module_path'
+4745 INFO: TclTkInfo: initializing cached Tcl/Tk info...
+5010 INFO: Processing standard module hook 'hook-_tkinter.py' from 'C:\\Users\\nikki\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\PyInstaller\\hooks'
+5090 INFO: Processing standard module hook 'hook-platform.py' from 'C:\\Users\\nikki\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\PyInstaller\\hooks'
+5128 INFO: Processing standard module hook 'hook-sysconfig.py' from 'C:\\Users\\nikki\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\PyInstaller\\hooks'
+5132 INFO: Processing standard module hook 'hook-_ctypes.py' from 'C:\\Users\\nikki\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\PyInstaller\\hooks'
+5137 INFO: Processing pre-safe-import-module hook 'hook-packaging.py' from 'C:\\Users\\nikki\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\PyInstaller\\hooks\\pre_safe_import_module'
+5138 INFO: SetuptoolsInfo: initializing cached setuptools info...
+5622 INFO: Processing pre-safe-import-module hook 'hook-typing_extensions.py' from 'C:\\Users\\nikki\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\PyInstaller\\hooks\\pre_safe_import_module'
+6114 INFO: Processing module hooks (post-graph stage)...
+6124 INFO: Processing standard module hook 'hook-_tkinter.py' from 'C:\\Users\\nikki\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\PyInstaller\\hooks'
+6130 INFO: Performing binary vs. data reclassification (936 entries)
+6231 INFO: Looking for ctypes DLLs
+6241 WARNING: Ignoring AppKit.framework/AppKit imported from C:\Users\nikki\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\darkdetect\_mac_detect.py - only basenames are supported with ctypes imports!
+6249 INFO: Analyzing run-time hooks ...
+6250 INFO: Including run-time hook 'pyi_rth_inspect.py' from 'C:\\Users\\nikki\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\PyInstaller\\hooks\\rthooks'
+6253 INFO: Including run-time hook 'pyi_rth__tkinter.py' from 'C:\\Users\\nikki\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\PyInstaller\\hooks\\rthooks'
+6269 INFO: Creating base_library.zip...
+6284 INFO: Looking for dynamic libraries
+6472 INFO: Extra DLL search directories (AddDllDirectory): []
+6472 INFO: Extra DLL search directories (PATH): []
+6636 INFO: Warnings written to c:\Users\nikki\Desktop\Meine Projekte\build\app\spielezentrum_0.1.1\warn-spielezentrum_0.1.1.txt
+6650 INFO: Graph cross-reference written to c:\Users\nikki\Desktop\Meine Projekte\build\app\spielezentrum_0.1.1\xref-spielezentrum_0.1.1.html
+6678 INFO: checking PYZ
+6678 INFO: Building PYZ because PYZ-00.toc is non existent
+6678 INFO: Building PYZ (ZlibArchive) c:\Users\nikki\Desktop\Meine Projekte\build\app\spielezentrum_0.1.1\PYZ-00.pyz
+6784 INFO: Building PYZ (ZlibArchive) c:\Users\nikki\Desktop\Meine Projekte\build\app\spielezentrum_0.1.1\PYZ-00.pyz completed successfully.
+6798 INFO: checking PKG
+6798 INFO: Building PKG because PKG-00.toc is non existent
+6798 INFO: Building PKG (CArchive) spielezentrum_0.1.1.pkg
+7916 INFO: Building PKG (CArchive) spielezentrum_0.1.1.pkg completed successfully.
+7930 INFO: Bootloader C:\Users\nikki\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\PyInstaller\bootloader\Windows-64bit-intel\runw.exe
+7930 INFO: checking EXE
+7930 INFO: Building EXE because EXE-00.toc is non existent
+7930 INFO: Building EXE from EXE-00.toc
+7930 INFO: Copying bootloader EXE to c:\Users\nikki\Desktop\Meine Projekte\dist\app\spielezentrum_0.1.1.exe
+7935 INFO: Copying icon to EXE
+7940 INFO: Copying 0 resources to EXE
+7940 INFO: Embedding manifest in EXE
+7944 INFO: Appending PKG archive to EXE
+8000 INFO: Fixing EXE headers
+8631 INFO: Building EXE from EXE-00.toc completed successfully.
+8645 INFO: Build complete! The results are available in: c:\Users\nikki\Desktop\Meine Projekte\dist\app
+134 INFO: PyInstaller: 6.20.0, contrib hooks: 2026.5
+135 INFO: Python: 3.14.5
+157 INFO: Platform: Windows-11-10.0.26200-SP0
+157 INFO: Python environment: C:\Users\nikki\AppData\Local\Python\pythoncore-3.14-64
+158 INFO: wrote build\launcher\launcher_0.1.1.spec
+159 INFO: Removing temporary files and cleaning cache in C:\Users\nikki\AppData\Local\pyinstaller
+161 INFO: Module search paths (PYTHONPATH):
+['c:\\Users\\nikki\\Desktop\\Meine Projekte',
+ 'C:\\Users\\nikki\\AppData\\Local\\Python\\pythoncore-3.14-64\\python314.zip',
+ 'C:\\Users\\nikki\\AppData\\Local\\Python\\pythoncore-3.14-64\\DLLs',
+ 'C:\\Users\\nikki\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib',
+ 'C:\\Users\\nikki\\AppData\\Local\\Python\\pythoncore-3.14-64',
+ 'C:\\Users\\nikki\\AppData\\Roaming\\Python\\Python314\\site-packages',
+ 'C:\\Users\\nikki\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages',
+ 'c:\\Users\\nikki\\Desktop\\Meine Projekte']
+403 INFO: Appending 'datas' from .spec
+404 INFO: checking Analysis
+404 INFO: Building Analysis because Analysis-00.toc is non existent
+404 INFO: Looking for Python shared library...
+404 INFO: Using Python shared library: C:\Users\nikki\AppData\Local\Python\pythoncore-3.14-64\python314.dll
+404 INFO: Running Analysis Analysis-00.toc
+404 INFO: Target bytecode optimization level: 0
+404 INFO: Initializing module dependency graph...
+405 INFO: Initializing module graph hook caches...
+416 INFO: Analyzing modules for base_library.zip ...
+1779 INFO: Processing standard module hook 'hook-encodings.py' from 'C:\\Users\\nikki\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\PyInstaller\\hooks'
+2193 INFO: Processing standard module hook 'hook-pickle.py' from 'C:\\Users\\nikki\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\PyInstaller\\hooks'
+2513 INFO: Processing standard module hook 'hook-difflib.py' from 'C:\\Users\\nikki\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\PyInstaller\\hooks'
+2528 INFO: Processing standard module hook 'hook-heapq.py' from 'C:\\Users\\nikki\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\PyInstaller\\hooks'
+4704 INFO: Caching module dependency graph...
+4727 INFO: Analyzing c:\Users\nikki\Desktop\Meine Projekte\launcher.py
+4748 INFO: Processing standard module hook 'hook-urllib3.py' from 'C:\\Users\\nikki\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\_pyinstaller_hooks_contrib\\stdhooks'
+4850 INFO: Processing pre-safe-import-module hook 'hook-backports.py' from 'C:\\Users\\nikki\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\PyInstaller\\hooks\\pre_safe_import_module'
+4852 INFO: SetuptoolsInfo: initializing cached setuptools info...
+5301 INFO: Setuptools: 'backports' appears to be a full setuptools-vendored copy - creating alias to 'setuptools._vendor.backports'!
+5308 INFO: Processing standard module hook 'hook-setuptools.py' from 'C:\\Users\\nikki\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\PyInstaller\\hooks'
+5350 INFO: Processing standard module hook 'hook-platform.py' from 'C:\\Users\\nikki\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\PyInstaller\\hooks'
+5388 INFO: Processing standard module hook 'hook-sysconfig.py' from 'C:\\Users\\nikki\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\PyInstaller\\hooks'
+5392 INFO: Processing standard module hook 'hook-_ctypes.py' from 'C:\\Users\\nikki\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\PyInstaller\\hooks'
+5397 INFO: Processing pre-safe-import-module hook 'hook-distutils.py' from 'C:\\Users\\nikki\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\PyInstaller\\hooks\\pre_safe_import_module'
+5430 INFO: Processing pre-safe-import-module hook 'hook-jaraco.py' from 'C:\\Users\\nikki\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\PyInstaller\\hooks\\pre_safe_import_module'
+5430 INFO: Setuptools: 'jaraco' appears to be a full setuptools-vendored copy - creating alias to 'setuptools._vendor.jaraco'!
+5451 INFO: Processing pre-safe-import-module hook 'hook-more_itertools.py' from 'C:\\Users\\nikki\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\PyInstaller\\hooks\\pre_safe_import_module'
+5452 INFO: Setuptools: 'more_itertools' appears to be a setuptools-vendored copy - creating alias to 'setuptools._vendor.more_itertools'!
+5586 INFO: Processing pre-safe-import-module hook 'hook-typing_extensions.py' from 'C:\\Users\\nikki\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\PyInstaller\\hooks\\pre_safe_import_module'
+5669 INFO: Processing pre-safe-import-module hook 'hook-packaging.py' from 'C:\\Users\\nikki\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\PyInstaller\\hooks\\pre_safe_import_module'
+5886 INFO: Processing standard module hook 'hook-setuptools._vendor.jaraco.text.py' from 'C:\\Users\\nikki\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\PyInstaller\\hooks'
+5887 INFO: Processing pre-safe-import-module hook 'hook-importlib_resources.py' from 'C:\\Users\\nikki\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\PyInstaller\\hooks\\pre_safe_import_module'
+6071 INFO: Processing pre-safe-import-module hook 'hook-importlib_metadata.py' from 'C:\\Users\\nikki\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\PyInstaller\\hooks\\pre_safe_import_module'
+6072 INFO: Setuptools: 'importlib_metadata' appears to be a setuptools-vendored copy - creating alias to 'setuptools._vendor.importlib_metadata'!
+6100 INFO: Processing standard module hook 'hook-setuptools._vendor.importlib_metadata.py' from 'C:\\Users\\nikki\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\PyInstaller\\hooks'
+6125 INFO: Processing pre-safe-import-module hook 'hook-zipp.py' from 'C:\\Users\\nikki\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\PyInstaller\\hooks\\pre_safe_import_module'
+6125 INFO: Setuptools: 'zipp' appears to be a setuptools-vendored copy - creating alias to 'setuptools._vendor.zipp'!
+6374 INFO: Processing pre-safe-import-module hook 'hook-tomli.py' from 'C:\\Users\\nikki\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\PyInstaller\\hooks\\pre_safe_import_module'
+6375 INFO: Setuptools: 'tomli' appears to be a setuptools-vendored copy - creating alias to 'setuptools._vendor.tomli'!
+6887 INFO: Processing pre-safe-import-module hook 'hook-wheel.py' from 'C:\\Users\\nikki\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\PyInstaller\\hooks\\pre_safe_import_module'
+6888 INFO: Setuptools: 'wheel' appears to be a setuptools-vendored copy - creating alias to 'setuptools._vendor.wheel'!
+7301 INFO: Processing standard module hook 'hook-certifi.py' from 'C:\\Users\\nikki\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\_pyinstaller_hooks_contrib\\stdhooks'
+7342 INFO: Processing standard module hook 'hook-charset_normalizer.py' from 'C:\\Users\\nikki\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\_pyinstaller_hooks_contrib\\stdhooks'
+7512 INFO: Processing standard module hook 'hook-customtkinter.py' from 'C:\\Users\\nikki\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\_pyinstaller_hooks_contrib\\stdhooks'
+7568 INFO: Processing pre-find-module-path hook 'hook-tkinter.py' from 'C:\\Users\\nikki\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\PyInstaller\\hooks\\pre_find_module_path'
+7570 INFO: TclTkInfo: initializing cached Tcl/Tk info...
+7846 INFO: Processing standard module hook 'hook-_tkinter.py' from 'C:\\Users\\nikki\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\PyInstaller\\hooks'
+8384 INFO: Processing module hooks (post-graph stage)...
+9052 INFO: Processing standard module hook 'hook-multiprocessing.util.py' from 'C:\\Users\\nikki\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\PyInstaller\\hooks'
+9133 INFO: Processing standard module hook 'hook-xml.py' from 'C:\\Users\\nikki\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\PyInstaller\\hooks'
+10055 INFO: Processing standard module hook 'hook-_tkinter.py' from 'C:\\Users\\nikki\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\PyInstaller\\hooks'
+10064 INFO: Performing binary vs. data reclassification (947 entries)
+10167 INFO: Looking for ctypes DLLs
+10181 WARNING: Ignoring AppKit.framework/AppKit imported from C:\Users\nikki\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\darkdetect\_mac_detect.py - only basenames are supported with ctypes imports!
+10199 INFO: Analyzing run-time hooks ...
+10201 INFO: Including run-time hook 'pyi_rth_inspect.py' from 'C:\\Users\\nikki\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\PyInstaller\\hooks\\rthooks'
+10204 INFO: Including run-time hook 'pyi_rth__tkinter.py' from 'C:\\Users\\nikki\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\PyInstaller\\hooks\\rthooks'
+10205 INFO: Including run-time hook 'pyi_rth_setuptools.py' from 'C:\\Users\\nikki\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\PyInstaller\\hooks\\rthooks'
+10206 INFO: Including run-time hook 'pyi_rth_pkgutil.py' from 'C:\\Users\\nikki\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\PyInstaller\\hooks\\rthooks'
+10208 INFO: Including run-time hook 'pyi_rth_multiprocessing.py' from 'C:\\Users\\nikki\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\PyInstaller\\hooks\\rthooks'
+10228 INFO: Creating base_library.zip...
+10243 INFO: Looking for dynamic libraries
+10726 INFO: Extra DLL search directories (AddDllDirectory): []
+10726 INFO: Extra DLL search directories (PATH): []
+10919 INFO: Warnings written to c:\Users\nikki\Desktop\Meine Projekte\build\launcher\launcher_0.1.1\warn-launcher_0.1.1.txt
+10953 INFO: Graph cross-reference written to c:\Users\nikki\Desktop\Meine Projekte\build\launcher\launcher_0.1.1\xref-launcher_0.1.1.html
+10987 INFO: checking PYZ
+10987 INFO: Building PYZ because PYZ-00.toc is non existent
+10987 INFO: Building PYZ (ZlibArchive) c:\Users\nikki\Desktop\Meine Projekte\build\launcher\launcher_0.1.1\PYZ-00.pyz
+11241 INFO: Building PYZ (ZlibArchive) c:\Users\nikki\Desktop\Meine Projekte\build\launcher\launcher_0.1.1\PYZ-00.pyz completed successfully.
+11261 INFO: checking PKG
+11261 INFO: Building PKG because PKG-00.toc is non existent
+11261 INFO: Building PKG (CArchive) launcher_0.1.1.pkg
+12417 INFO: Building PKG (CArchive) launcher_0.1.1.pkg completed successfully.
+12431 INFO: Bootloader C:\Users\nikki\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\PyInstaller\bootloader\Windows-64bit-intel\runw.exe
+12431 INFO: checking EXE
+12431 INFO: Building EXE because EXE-00.toc is non existent
+12431 INFO: Building EXE from EXE-00.toc
+12431 INFO: Copying bootloader EXE to c:\Users\nikki\Desktop\Meine Projekte\dist\launcher\launcher_0.1.1.exe
+12437 INFO: Copying icon to EXE
+12442 INFO: Copying 0 resources to EXE
+12442 INFO: Embedding manifest in EXE
+12446 INFO: Appending PKG archive to EXE
+12499 INFO: Fixing EXE headers
+13269 INFO: Building EXE from EXE-00.toc completed successfully.
+13284 INFO: Build complete! The results are available in: c:\Users\nikki\Desktop\Meine Projekte\dist\launcher
+Der Befehl "git" ist entweder falsch geschrieben oder
+konnte nicht gefunden werden.
+Der Befehl "C:\Program" ist entweder falsch geschrieben oder
+konnte nicht gefunden werden.
+
